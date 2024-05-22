@@ -11,8 +11,8 @@
 DOMAIN, testflight.apple.com, PROXY
 
 [Script]
-http-request ^https?:\/\/testflight\.apple\.com\/v3\/accounts\/.*\/apps$ script-path = https://raw.githubusercontent.com/mittovipi/AutoJoinTestFlight/main/Loon/TF_keys.js, tag = auto_join_TF
-http-request ^https://testflight.apple.com/join/(.*) script-path = https://raw.githubusercontent.com/mittovipi/AutoJoinTestFlight/main/Loon/TF_keys.js, tag = auto_join_TF
+http-request ^https?:\/\/testflight\.apple\.com\/v3\/accounts\/.*\/apps$ script-path = https://raw.githubusercontent.com/phanquocviet8x/AuToTF/main/Loon/TF_keys.js, tag = auto_join_TF
+http-request ^https://testflight.apple.com/join/(.*) script-path = https://raw.githubusercontent.com/phanquocviet8x/AuToTF/main/Loon/TF_keys.js, tag = auto_join_TF
 
 cron "*/5 * * * * *" script-path = https://raw.githubusercontent.com/phanquocviet8x/AuToTF/main/Loon/Auto_join_TF.js, tag = auto_join_TF, timeout = 180
 
