@@ -1,0 +1,17 @@
+#!name=TestFlight
+#!desc=https://github.com/VirgilClyne TestFlight
+#!author=VirgilClyne
+#!category=Third Party Module
+#!arguments=APPIDS:iRingo.TestFlight,CUSTOM_NAME:Chuyển đổi phiên,ENGINE:auto
+#!arguments-desc=[Cài đặt tham số]\n▪︎ APPIDS: Chỉ định ID ứng dụng sẽ được chuyển đổi,Nhiều ID ứng dụng được phân tách bằng dấu phẩy,biến mặc định"iRingo.TestFlight"Chuyển đổi phiên;\n▪︎ CUSTOM_NAME: Trạng thái bắt đầu và dừng tập lệnh chuyển đổi phiên,sử dụng"#"khi dừng bình luận;\n▪︎ ENGINE: công cụ thực thi tập lệnh,Mặc định là"auto"tự động chọn,Thông số tùy chọn"auto ↪︎ jsc ↪︎ webview";\n[Hướng dẫn sử dụng]\n▫︎ Nhấp vào TestFlight trên iOS Ứng dụng góc trên bên phải"biểu tượng"Chuyển đổi phiên kích hoạt,Nhấp vào TestFlight trên tvOS Ứng dụng ở trên cùng"cài đặt"Chuyển đổi phiên kích hoạt;\n▫︎ Không cần xóa nền sau khi chuyển đổi phiên thành công.,Chỉ cần kéo xuống một lần để làm mới;\n▫︎ Tham khảo thêm cách sử dụng https://github.com/VirgilClyne/iRingo/wiki/✈-TestFlight
+
+[General]
+skip-proxy = %APPEND% iosapps.itunes.apple.com
+
+[Script]
+{{{CUSTOM_NAME}}} = type=http-request,pattern=https:\/\/testflight\.apple\.com\/v1\/devices$,script-path=https://raw.githubusercontent.com/chavyleung/scripts/master/box/switcher/box.switcher.js,requires-body=1,argument={{{APPIDS}}},script-update-interval=0,timeout=30,engine={{{ENGINE}}}
+Yêu cầu beta nội bộ = type=http-request,requires-body=true,pattern=^https?:\/\/testflight\.apple\.com\/(.+)(\?.*)?$,script-path=https://raw.githubusercontent.com/VirgilClyne/iRingo/main/js/TestFlight.request.js,timeout=60,engine={{{ENGINE}}}
+Phản hồi beta nội bộ = type=http-response,requires-body=true,pattern=^https?:\/\/testflight\.apple\.com\/(.+)(\?.*)?$,script-path=https://raw.githubusercontent.com/VirgilClyne/iRingo/main/js/TestFlight.response.js,timeout=60,engine={{{ENGINE}}}
+
+[MITM]
+hostname = %APPEND% testflight.apple.com
